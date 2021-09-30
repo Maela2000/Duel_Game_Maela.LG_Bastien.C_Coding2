@@ -10,6 +10,8 @@ public class player_1 : MonoBehaviour
     public GameObject player1;
     public float speed;
     public int res;
+    public string TagJ1;
+    public string TagJ2;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,10 @@ public class player_1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        TagJ1 = gameObject.tag;
+        TagJ2 = other.gameObject.tag;
+        Result(TagJ1, TagJ2);
+           
         if (res == 1)
         {
             Destroy(other.gameObject);
@@ -48,8 +54,8 @@ public class player_1 : MonoBehaviour
         }
         else if (res == 0)
         {
-            //Destroy(other.gameObject);
-            //Destroy(gameObject);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
     private void Result(string Tag1, string Tag2)
@@ -64,11 +70,11 @@ public class player_1 : MonoBehaviour
                         break;
 
                     case "rock":
-                        res = 2;
+                        res = 1;
                         break;
 
                     case "scissors":
-                        res = 1;
+                        res = 2;
                         break;
 
                 }
