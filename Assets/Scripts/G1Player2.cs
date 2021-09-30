@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class G1Player2 : MonoBehaviour
 {
-
-
     private float speed = 3;
-    private bool shoot;
+    public bool shoot;
 
+    public float life = 1;
     public GameObject bullet;
     public Vector3 bulletOffset;
     private float halfPlayerSizeX;
@@ -59,10 +58,10 @@ public class G1Player2 : MonoBehaviour
 
         float distance = transform.position.z - Camera.main.transform.position.z;
 
-        float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance)).x + halfPlayerSizeX;
+        float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0, distance)).x + halfPlayerSizeX;
         float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance)).x - halfPlayerSizeX;
-        float downBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, -0.15f, distance)).y + halfPlayerSizeY;
-        float upBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.85f, distance)).y - halfPlayerSizeY;
+        float downBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, -0.05f, distance)).y + halfPlayerSizeY;
+        float upBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.95f, distance)).y - halfPlayerSizeY;
 
         position.x = Mathf.Clamp(position.x, leftBorder, rightBorder);
         position.y = Mathf.Clamp(position.y, downBorder, upBorder);
@@ -70,7 +69,7 @@ public class G1Player2 : MonoBehaviour
     }
     IEnumerator WaitShoot()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         shoot = false;
     }
 
@@ -78,9 +77,9 @@ public class G1Player2 : MonoBehaviour
     {
         if (other.gameObject.tag == "BulletP1")
         {
-            Destroy(gameObject);
+            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             Destroy(other.gameObject);
-            //GameplayManager.Instance.ShowGameOver();
+            life = 0;
         }
     }
 }
