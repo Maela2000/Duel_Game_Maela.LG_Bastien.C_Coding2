@@ -8,7 +8,9 @@ public class player_2 : MonoBehaviour
     static string TagPaper = "paper";
     static string TagScissors = "scissors";
     public GameObject player2;
-    // Start is called before the first frame update
+    public float speed;  
+    
+        // Start is called before the first frame update
     void Start()
     {
 
@@ -17,6 +19,7 @@ public class player_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(Vector3.left * speed);
         if (Input.GetKeyDown("left"))
         {
             player2.tag = TagRock;                                 
@@ -28,14 +31,6 @@ public class player_2 : MonoBehaviour
         if (Input.GetKeyDown("right"))
         {
             player2.tag = TagScissors;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (((other.tag == "paper") && (tag == "scissors")) || ((other.tag == "scissors") && (tag == "rock")) || ((other.tag == "rock") && (tag == "paper")))
-        {
-            Destroy(other);
         }
     }
 }
