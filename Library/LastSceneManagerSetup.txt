@@ -1,5 +1,6 @@
 sceneSetups:
 - path: Assets/Scenes/Chifoumi.unity
+- path: Assets/Scenes/Game3.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
